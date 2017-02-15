@@ -2,23 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>            
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);netstandard1.6;dotnet5.6;portable-net45+win8</PackageTargetFallback>
+
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup>    
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
-  </ItemGroup>
-
+  </ItemGroup>  
 
   <ItemGroup>
+    <Compile Include="Storage/*.fs" />
     <Compile Include="Controllers/*.fs" />
     <Compile Include="Startup.fs" />
-    <Compile Include="Program.fs" />
-
+    <Compile Include="Program.fs" />    
     <None Remove="**/*.fs" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>    
     <PackageReference Include="FSharp.NET.Sdk" Version="1.0.0-beta-*" PrivateAssets="All" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.0.1"/>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.0.2" />    
@@ -33,7 +35,7 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="dotnet-compile-fsc">
-      <Version>1.0.0-preview2-020000</Version>
+      <Version>1.0.0-preview2-020000</Version>      
     </DotNetCliToolReference>
   </ItemGroup>
 
