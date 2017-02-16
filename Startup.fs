@@ -1,5 +1,6 @@
 ﻿namespace WimtShortener
-
+open WimtShortener.Controllers.Settings
+open WimtShortener.Storage
 open System
 open System.Collections.Generic
 open System.Linq
@@ -9,6 +10,7 @@ open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Logging
+open Microsoft.AspNetCore.Http
 
 
 type Startup private () =
@@ -26,25 +28,27 @@ type Startup private () =
         this.Configuration <- builder.Build()
 
 
+
     // This method gets called by the runtime. Use this method to add services to the container.
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
         services.AddMvc() |> ignore
+        services
+            .Configure<ShortnerOptions>(this.Configuration.GetSection "Shortener")
+            .Configure<TableStorageSettings>(this.Configuration.GetSection "Storage")
+        |> ignore
+        
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment, loggerFactory: ILoggerFactory) =
 
         loggerFactory.AddConsole(this.Configuration.GetSection("Logging")) |> ignore
-        loggerFactory.AddDebug() |> ignore
+        loggerFactory.AddDebug() |> ignore        
 
         if (env.IsDevelopment()) then
-            app.UseDeveloperExceptionPage() |> ignore
-            app.UseBrowserLink() |> ignore
-        else
-            app.UseExceptionHandler("/Home/Error") |> ignore
+            app.UseDeveloperExceptionPage() |> ignore                              
 
-        app.UseStaticFiles() |> ignore
-
+        app.Map(PathString("/create"), fun builder -> builder.UseDefaultFiles().UseStaticFiles()  |> ignore) |> ignore
         
         app.UseMvc() |> ignore
         

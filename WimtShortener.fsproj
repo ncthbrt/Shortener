@@ -3,15 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>            
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);netstandard1.6;dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);netstandard1.6;dotnet5.6;portable-net45+win8;net</PackageTargetFallback>
 
   </PropertyGroup>
   <ItemGroup>    
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.1.0-preview4-final" />
   </ItemGroup>  
-
+ 
   <ItemGroup>
-    <Compile Include="Storage/*.fs" />
+    <Compile Include="Util/*.fs" />
+    <Compile Include="Storage/*.fs" />    
+    <Compile Include="Controllers/Settings.fs" />
     <Compile Include="Controllers/*.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Program.fs" />    
@@ -20,17 +23,17 @@
 
   <ItemGroup>    
     <PackageReference Include="FSharp.NET.Sdk" Version="1.0.0-beta-*" PrivateAssets="All" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.0.1"/>
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.0.2" />    
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.1" />
-    <PackageReference Include="Microsoft.FSharp.Core.netcore" Version="1.0.0-alpha-161023" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.0.1" />      
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.0.1" />      
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="1.0.1" />          
+    <PackageReference Include="WindowsAzure.Storage" Version="8.0.1"/>    
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0"/>        
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.0" />    
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
+    <PackageReference Include="Microsoft.FSharp.Core.netcore" Version="1.0.0-rc-170122" />    
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.0" />      
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.0" />      
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="1.1.0" />          
   </ItemGroup>
 
   <ItemGroup>

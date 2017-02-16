@@ -19,6 +19,6 @@ module Program =
                 .UseStartup<Startup>()
                 .Build()
 
-        host.Run()
+        host.Run() 
 
         0
