@@ -1,0 +1,37 @@
+$col-primary: #DB5349;
+$col-primary-lighter: #DB7871;
+$col-secondary: #E4E4E4;
+$col-secondary-lighter: #C4C4C4;
+$background-color: #525252;
+$background-color-dark: #2D2D2D;
+
+ @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body{        
+    font-family: 'Josefin Sans', sans-serif;
+    margin:1em auto;
+    max-width:40em;
+    padding:0 .62em;
+    font:1.2em/1.62em sans-serif;
+}
+
+.input-row{
+    margin-top: 10pt;
+    margin-bottom: 10pt;    
+}
+button, input{
+    margin-left: 3pt;
+    margin-right: 3pt;
+}
+.input-row {
+    margin: 3pt;    
+}
+
+h1,h2,h3 {
+    line-height:1.2em;
+}
+@media print{
+    body{
+        max-width:none
+    }
+}

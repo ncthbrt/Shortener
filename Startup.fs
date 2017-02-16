@@ -6,12 +6,12 @@ open System.Collections.Generic
 open System.Linq
 open System.Threading.Tasks
 open Microsoft.AspNetCore.Builder
+open Microsoft.AspNetCore.Cors
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
-open Microsoft.Extensions.DependencyInjection
+open Microsoft.Extensions.DependencyInjection 
 open Microsoft.Extensions.Logging
 open Microsoft.AspNetCore.Http
-
 
 type Startup private () =
 
@@ -32,7 +32,9 @@ type Startup private () =
     // This method gets called by the runtime. Use this method to add services to the container.
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
-        services.AddMvc() |> ignore
+        services.AddMvc()  |> ignore
+        services.AddCors() |> ignore
+
         services
             .Configure<ShortnerOptions>(this.Configuration.GetSection "Shortener")
             .Configure<TableStorageSettings>(this.Configuration.GetSection "Storage")
@@ -46,8 +48,9 @@ type Startup private () =
         loggerFactory.AddDebug() |> ignore        
 
         if (env.IsDevelopment()) then
-            app.UseDeveloperExceptionPage() |> ignore                              
+            app.UseDeveloperExceptionPage() |> ignore                   
 
+        app.UseCors(fun builder -> builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials()|> ignore) |> ignore
         app.Map(PathString("/create"), fun builder -> builder.UseDefaultFiles().UseStaticFiles()  |> ignore) |> ignore
         
         app.UseMvc() |> ignore

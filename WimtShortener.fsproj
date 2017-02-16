@@ -42,4 +42,15 @@
     </DotNetCliToolReference>
   </ItemGroup>
 
+  <ItemDefinitionGroup>  
+    <PostBuildEvent>  
+      <Command>pushd $(ProjectDir)/Frontend
+              npm run build
+              popd
+      </Command>  
+      <Message>Building the frontend</Message>  
+    </PostBuildEvent>       
+</ItemDefinitionGroup>  
+
+
 </Project>
