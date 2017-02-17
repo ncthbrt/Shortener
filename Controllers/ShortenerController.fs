@@ -47,16 +47,3 @@ type public ShortnerController (options: IOptions<ShortnerOptions>, tableOptions
                 this.BadRequest("Name already has been assigned to another url") :> IActionResult
         else
             this.BadRequest("Please only use a whitelisted url") :> IActionResult
-
-        
-        
-    
-    
-
-
-        
-
-
-        
-
-

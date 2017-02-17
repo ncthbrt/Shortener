@@ -19,15 +19,3 @@ type public RedirectController (options:IOptions<ShortnerOptions>, tableOptions:
         
     [<HttpGetAttribute>]
     member public this.Get () = this.Redirect(options.Value.DefaultUrl)
-
-        
-    
-    
-
-
-        
-
-
-        
-
-
