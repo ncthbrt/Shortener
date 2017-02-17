@@ -59,7 +59,7 @@ module UrlStorage =
         tryCreateAndStoreHash table url 0 settings.Limit
 
     let SetUrlWithName (settings:TableStorageSettings) (url:string) (name:string): bool = 
-        let table = settings |> getAndCreateTableIfNotExists
+        let table = settings |> getAndCreateTableIfNotExists 
         (tryInsertIfNotExists table name url)
         
 

@@ -5,6 +5,7 @@ const appJsEntry = path.join(__dirname, 'src', 'index.jsx');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
         ],
     },
     output: {
-        filename: '[hash].[name].js',
+        filename: '[name].[hash].js',
         path: path.join(__dirname, '../wwwroot'),
         publicPath: '/'
     },
@@ -49,11 +50,18 @@ module.exports = {
             { from: `${path.join(__dirname, './src/img')}`},
             { from: `${path.join(__dirname, './src/index.html')}` }
         ], { copyUnmodified: true }),
+        new HtmlWebpackPlugin({
+            showErrors: true,
+            minify: false,
+            inject: true,
+            template: 'src/index.html',
+            filename: 'index.html',
+            hash: true                        
+      }),
         new ExtractTextPlugin('style.css', {
             allChunks: true
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'common.js'),
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
             SHORTENAPI_URL : process.env.NODE_ENV!='production'?'\'http://localhost:5000/\'':'\'/\''
