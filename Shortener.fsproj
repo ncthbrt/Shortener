@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>            
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>    
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);netstandard1.6;dotnet5.6;portable-net45+win8;net</PackageTargetFallback>
-
   </PropertyGroup>
   <ItemGroup>    
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
@@ -21,12 +20,13 @@
     <None Remove="**/*.fs" />
   </ItemGroup>
 
-  <ItemGroup>    
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.DotNetHostPolicy" Version="1.1.0" />  
     <PackageReference Include="FSharp.NET.Sdk" Version="1.0.0-beta-*" PrivateAssets="All" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.0.1"/>    
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0"/>        
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />    
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.0" />    
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
@@ -42,15 +42,6 @@
     </DotNetCliToolReference>
   </ItemGroup>
 
-  <ItemDefinitionGroup>  
-    <PostBuildEvent>  
-      <Command>pushd $(ProjectDir)/Frontend
-              npm run build
-              popd
-      </Command>  
-      <Message>Building the frontend</Message>  
-    </PostBuildEvent>       
-</ItemDefinitionGroup>  
-
+  
 
 </Project>

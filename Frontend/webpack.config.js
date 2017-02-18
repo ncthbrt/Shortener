@@ -45,11 +45,7 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json', '.css', '.scss'],
         root: [path.join(__dirname, './src')]
     },
-    plugins: [
-        new CopyWebpackPlugin([            
-            { from: `${path.join(__dirname, './src/img')}`},
-            { from: `${path.join(__dirname, './src/index.html')}` }
-        ], { copyUnmodified: true }),
+    plugins: [        
         new HtmlWebpackPlugin({
             showErrors: true,
             minify: false,
