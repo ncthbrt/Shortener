@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>    
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>        
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);netstandard1.6;dotnet5.6;portable-net45+win8;net</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>    
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.1.0-preview4-final" />
+    <DotNetCliToolReference Include="dotnet-compile-fsc" Version="1.0.0-preview2-020000"/>      
   </ItemGroup>  
  
   <ItemGroup>
@@ -21,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.DotNetHostPolicy" Version="1.1.0" />  
-    <PackageReference Include="FSharp.NET.Sdk" Version="1.0.0-beta-*" PrivateAssets="All" />
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />  
+    <PackageReference Include="FSharp.NET.Sdk" Version="1.0.0" PrivateAssets="All" />    
     <PackageReference Include="WindowsAzure.Storage" Version="8.0.1"/>    
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0"/>        
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
@@ -34,12 +36,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.0" />      
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.0" />      
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="1.1.0" />          
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-compile-fsc">
-      <Version>1.0.0-preview2-020000</Version>      
-    </DotNetCliToolReference>
   </ItemGroup>
 
   
