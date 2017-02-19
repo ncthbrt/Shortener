@@ -45,7 +45,18 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json', '.css', '.scss'],
         root: [path.join(__dirname, './src')]
     },
-    plugins: [
+    plugins: [        
+        new ExtractTextPlugin('style.css', {
+            allChunks: true
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
+            SHORTENAPI_URL : '\'/\''
+        }),
+        new webpack.SourceMapDevToolPlugin({
+            exclude: /node_modules/,
+        }),
         new HtmlWebpackPlugin({
             showErrors: true,
             minify: false,
@@ -53,18 +64,7 @@ module.exports = {
             template: 'src/index.html',
             filename: 'index.html',
             hash: true                        
-      }),
-        new ExtractTextPlugin('style.css', {
-            allChunks: true
-        }),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
-            SHORTENAPI_URL : "'/'"
-        }),
-        new webpack.SourceMapDevToolPlugin({
-            exclude: /node_modules/,
-        })
+      })
     ],
     postcss: [
         autoprefixer({
