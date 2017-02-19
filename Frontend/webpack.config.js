@@ -19,7 +19,7 @@ module.exports = {
     output: {
         filename: '[name].[hash].js',
         path: path.join(__dirname, '../wwwroot'),
-        publicPath: '/'
+        publicPath: './'
     },
     module: {
         loaders: [
@@ -45,7 +45,7 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json', '.css', '.scss'],
         root: [path.join(__dirname, './src')]
     },
-    plugins: [        
+    plugins: [
         new HtmlWebpackPlugin({
             showErrors: true,
             minify: false,
