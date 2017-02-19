@@ -18,7 +18,7 @@ module.exports = {
     },
     output: {
         filename: '[name].[hash].js',
-        path: path.join(__dirname, '../wwwroot'),
+        path: path.join(__dirname, '../publish/wwwroot'),
         publicPath: './'
     },
     module: {

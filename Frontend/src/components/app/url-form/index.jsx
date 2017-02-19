@@ -7,7 +7,7 @@ const UrlForm = ({url,clearForm, customPath, setUrl, setCustomPath, createShorte
     return (
         <span>
             <div className='input-row'>
-                <span>Target url:</span>
+                <span>Target url (include http:// or https://):</span>
                 <input onChange={(e) => setUrl(e.target.value)} placeholder='target url' value={url? url: ''} />
             </div>
             <div className='input-row'>
