@@ -60,7 +60,7 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
-            SHORTENAPI_URL : process.env.NODE_ENV!='production'?'\'http://localhost:5000/\'':'\'/\''
+            SHORTENAPI_URL : "'/'"
         }),
         new webpack.SourceMapDevToolPlugin({
             exclude: /node_modules/,
